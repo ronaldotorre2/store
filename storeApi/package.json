@@ -1,0 +1,25 @@
+{
+  "name": "storeapi",
+  "version": "1.0.0",
+  "description": "Api app Store",
+  "author": {
+    "name": "Ronaldo Torre",
+    "mail": "ronaldo.torre@outlook.com"
+  },
+  "license": "ISC",
+  "main": "server.js",
+  "keywords": [
+    "Store",
+    "StoreApi"
+  ],
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  }
+}
