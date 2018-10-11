@@ -7,9 +7,14 @@
  * ---------------------------------------------------------*/
 
 const express = require('express');
+const jwt     = require('jsonwebtoken');
+
+const authconfig = require('../../config/auth');
+
+const User    = require('./userModel');
+
 const controller = express.Router();
 
-const User = require('./userModel');
 
 controller.get('/', function (req, res, next) {
     res.status(200).send({
@@ -27,7 +32,11 @@ controller.post('/register',async(req,res)=>{
         const user = await User.create(req.body);
         user.password = undefined;
 
-        return res.send({user});
+        const token = jwt.sign({id: user.id}, authconfig.secret, {
+            expiresIn: 86400,
+        });
+
+        return res.send({user, token});
     }
     catch(error){
         return res.status(400).send({error: 'Register user failed'});

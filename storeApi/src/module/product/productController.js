@@ -6,8 +6,8 @@
  * Controller.....: /product
  * ---------------------------------------------------------*/
 
-const express = require('express');
-const controller = express.Router();
+const express     = require('express');
+const controller  = express.Router();
 
 const Product = require('./productModel');
 
