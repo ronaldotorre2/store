@@ -3,18 +3,13 @@
  * Descriotion....: StoreApp project on nodejs with mongodb
  * Author.........: Ronaldo Torre 
  *-----------------------------------------------------------
- * Controller.....: /product
+ * Configuration..: Database
  * ---------------------------------------------------------*/
 
-const express = require('express');
-const controller = express.Router();
+const mongoose = require('mongoose');
+const host = "localhost";
 
-const Product = require('./productModel');
+mongoose.connect('mongodb://'+host+'/storeapp',{useMongoClient: true});
+mongoose.Promise = global.Promise;
 
-controller.get('/', function (req, res, next) {
-    res.status(200).send({
-        title:"produto"
-    });
-});
-
-module.exports = controller;
+module.exports = mongoose;

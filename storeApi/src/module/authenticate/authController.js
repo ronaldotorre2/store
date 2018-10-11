@@ -3,18 +3,19 @@
  * Descriotion....: StoreApp project on nodejs with mongodb
  * Author.........: Ronaldo Torre 
  *-----------------------------------------------------------
- * Controller.....: /product
+ * Controller.....: /authenticate
  * ---------------------------------------------------------*/
 
 const express = require('express');
 const controller = express.Router();
 
-const Product = require('./productModel');
+const User = require('../user/userModel');
 
 controller.get('/', function (req, res, next) {
     res.status(200).send({
-        title:"produto"
+        title:"Autenticar"
     });
 });
+
 
 module.exports = controller;

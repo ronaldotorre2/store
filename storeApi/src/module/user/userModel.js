@@ -3,26 +3,27 @@
  * Descriotion....: StoreApp project on nodejs with mongodb
  * Author.........: Ronaldo Torre
  *-----------------------------------------------------------
- * Entity.........: product
+ * Entity.........: user
  * ---------------------------------------------------------*/
 
-const mongoose = require('../../config/database');
+const mongoose  = require('../../config/database');
+const bcrypt    = require('bcryptjs'); 
 
-const ProductModel = new mongoose.Schema({
+const UserModel = new mongoose.Schema({
     name:{
         type: String,
         required: true,
     },
-    description:{
+    mail:{
         type: String,
+        unique: true,
+        required: true,
+        lowercase: true,
     },
-    codebar:{
+    password:{
         type: String,
         required: true,
-    },
-    keywords:{
-        type: String,
-        required: true,
+        select: false,
     },
     createdAt:{
         type: Date,
@@ -30,6 +31,13 @@ const ProductModel = new mongoose.Schema({
     },
 });
 
-const Product = mongoose.model('Product', ProductModel);
+UserModel.pre('save', async function(next){
+    const hash = await bcrypt.hash(this.password,10);
+    this.password = hash;
 
-module.exports = Product;
+    next();
+});
+
+const User = mongoose.model('User', UserModel);
+
+module.exports = User;
