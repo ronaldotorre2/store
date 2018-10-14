@@ -6,12 +6,12 @@
  * Controller.....: /user
  * ---------------------------------------------------------*/
 
-const express = require('express');
-const jwt     = require('jsonwebtoken');
+const express    = require('express');
+const jwt        = require('jsonwebtoken');
 
 const authconfig = require('../../config/auth');
 
-const User    = require('./userModel');
+const User       = require('./userModel');
 
 const controller = express.Router();
 

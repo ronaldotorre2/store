@@ -8,6 +8,8 @@
 
 const mongoose = require('../../config/database');
 
+const category = require('./categoryModel');
+
 const ProductModel = new mongoose.Schema({
     name:{
         type: String,
@@ -20,10 +22,14 @@ const ProductModel = new mongoose.Schema({
         type: String,
         required: true,
     },
-    keywords:{
+    codencm:{
         type: String,
+    },
+    category:{
+        type: category.schema,
         required: true,
     },
+    tags:[String],
     createdAt:{
         type: Date,
         default: Date.now,

@@ -7,9 +7,11 @@
  * ---------------------------------------------------------*/
 
 const express     = require('express');
+
+const Product     = require('./productModel');
+
 const controller  = express.Router();
 
-const Product = require('./productModel');
 
 controller.get('/', function (req, res, next) {
     res.status(200).send({
