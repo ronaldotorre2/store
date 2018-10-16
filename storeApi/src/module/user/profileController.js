@@ -3,24 +3,24 @@
  * Descriotion....: StoreApp project on nodejs with mongodb
  * Author.........: Ronaldo Torre 
  *-----------------------------------------------------------
- * Controller.....: /category
+ * Controller.....: /userProfile
  * ---------------------------------------------------------*/
 
 const express     = require('express');
 
-const Category    = require('./categoryModel');
+const Profile     = require('./profileModel');
 
 const controller  = express.Router();
 
 
 controller.get('/list', async(req, res, next)=>{
-    var category = await Category.find();
+    var profile = await Profile.find();
     
-    if(category == null || category == undefined){
-        return res.send(204).send({error: 'Not records of category found!'});
+    if(profile == null || profile == undefined){
+        return res.send(204).send({error: 'Not records of profile found!'});
     }
     else{
-        return res.send({category});
+        return res.send({profile});
     }
 });
 
@@ -28,15 +28,15 @@ controller.post('/register',async(req,res)=>{
     const { name } = req.body;
 
     try{
-        if(await Category.findOne({name}))
-            return res.status(400).send({error: 'Category already exists!'});
+        if(await Profile.findOne({name}))
+            return res.status(400).send({error: 'Profile already exists!'});
 
-        const category = await Category.create(req.body);
+        const profile = await Profile.create(req.body);
         
-        return res.send({category});
+        return res.send({profile});
     }
     catch(error){
-        return res.status(400).send({error: 'Register category failed'});
+        return res.status(400).send({error: 'Register profile failed'});
     }
 });
 

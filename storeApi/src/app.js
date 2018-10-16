@@ -13,6 +13,7 @@ const app = express();
 
 //Controllers
 const indexController    = require('./module/home/indexController');
+const profileController  = require('./module/user/profileController');
 const userController     = require('./module/user/userController'); 
 const authController     = require('./module/authenticate/authController');
 const categoryController = require('./module/catalog/categoryController'); 
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', indexController);
+app.use('/userprofile', profileController)
 app.use('/user',userController);
 app.use('/auth',authController);
 app.use('/category',categoryController);

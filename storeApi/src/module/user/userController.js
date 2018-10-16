@@ -16,10 +16,15 @@ const User       = require('./userModel');
 const controller = express.Router();
 
 
-controller.get('/', function (req, res, next) {
-    res.status(200).send({
-        title:"Usuários"
-    });
+controller.get('/list', async(req,res,next)=>{
+    var user = await User.find();
+    
+    if(user == null || user == undefined){
+        return res.send(204).send({error: 'Not records of user found!'});
+    }
+    else{
+        return res.send({user});
+    }
 });
 
 controller.post('/register',async(req,res)=>{

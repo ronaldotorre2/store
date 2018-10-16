@@ -13,10 +13,17 @@ const Product     = require('./productModel');
 const controller  = express.Router();
 
 
-controller.get('/', function (req, res, next) {
-    res.status(200).send({
-        title:"produto"
-    });
+controller.get('/list', async(req, res, next)=>{
+    var product = await Product.find();
+    
+    if(product == null || product == undefined){
+        return res.send(204).send({error: 'Not records of product found!'});
+    }
+    else{
+        return res.send({product});
+    }
 });
+
+
 
 module.exports = controller;
