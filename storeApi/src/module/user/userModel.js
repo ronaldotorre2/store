@@ -9,7 +9,13 @@
 const mongoose  = require('../../config/database');
 const bcrypt    = require('bcryptjs'); 
 
+const profile   = require('./profileModel');
+
 const UserModel = new mongoose.Schema({
+    login:{
+        type: String,
+        required: true,
+    },
     name:{
         type: String,
         required: true,
@@ -24,6 +30,13 @@ const UserModel = new mongoose.Schema({
         type: String,
         required: true,
         select: false,
+    },
+    remember:{
+        type: String,
+    },
+    profile:{
+        type: profile.schema,
+        required: true,
     },
     createdAt:{
         type: Date,

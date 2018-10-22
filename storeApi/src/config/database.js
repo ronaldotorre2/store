@@ -9,7 +9,8 @@
 const mongoose = require('mongoose');
 const host = "localhost";
 
-mongoose.connect('mongodb://'+host+'/storeapp',{useMongoClient: true});
+mongoose.connect('mongodb://'+host+'/storeapp', { useMongoClient: true });
 mongoose.Promise = global.Promise;
+mongoose.pluralize(null);
 
 module.exports = mongoose;
