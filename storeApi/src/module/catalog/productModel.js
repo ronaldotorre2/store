@@ -25,10 +25,15 @@ const ProductModel = new mongoose.Schema({
     codencm:{
         type: String,
     },
+    unit:{
+        type: String,
+        required: true,
+    },
     category:{
         type: category.schema,
         required: true,
     },
+    images:[String],
     tags:[String],
     createdAt:{
         type: Date,

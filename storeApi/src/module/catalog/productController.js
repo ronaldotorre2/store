@@ -24,6 +24,20 @@ controller.get('/list', async(req, res, next)=>{
     }
 });
 
+controller.post('/register',async(req,res)=>{
+    const {name} = req.body;
 
+    try{
+        if(await Product.findOne({name}))
+            return res.status(400).send({error: 'Product already exists!'});
+
+        const product = await Product.create(req.body);
+        
+        return res.send({product});
+    }
+    catch(error){
+        return res.status(400).send({error: 'Register product failed'});
+    }
+});
 
 module.exports = controller;
