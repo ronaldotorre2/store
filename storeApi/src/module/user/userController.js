@@ -16,18 +16,8 @@ const User       = require('./userModel');
 const controller = express.Router();
 
 
-controller.get('/list', async(req,res,next)=>{
-    var user = await User.find();
-    
-    if(user == null || user == undefined){
-        return res.send(204).send({error: 'Not records of user found!'});
-    }
-    else{
-        return res.send({user});
-    }
-});
-
-controller.post('/register',async(req,res)=>{
+//Create a new user
+controller.post('/create',async(req,res)=>{
     const { mail } = req.body;
 
     try{
@@ -45,6 +35,18 @@ controller.post('/register',async(req,res)=>{
     }
     catch(error){
         return res.status(400).send({error: 'Register user failed'});
+    }
+});
+
+//Get all users
+controller.get('/read', async(req,res,next)=>{
+    var user = await User.find();
+    
+    if(user == null || user == undefined){
+        return res.status(204).send({error: 'Not records of user found!'});
+    }
+    else{
+        return res.status(200).send({user});
     }
 });
 
