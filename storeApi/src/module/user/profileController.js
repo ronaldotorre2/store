@@ -42,12 +42,12 @@ controller.get('/read', async(req, res, next)=>{
     }
 });
 
-//Get a single profile for id
+//Get a single profile by id
 controller.get('/find/:id', async(req, res, next)=>{
     var profile = await Profile.findById(req.params.id);
     
     if(profile == null || profile == undefined){
-        return res.send(204).send({error: 'Not records of profile found!'});
+        return res.status(204).send({error: 'Not records of profile found!'});
     }
     else{
         return res.status(200).send({profile});
@@ -56,12 +56,48 @@ controller.get('/find/:id', async(req, res, next)=>{
 
 // Update a profile
 controller.put('/update/:id', async(req, res)=>{
-    Profile.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, data) {
-        if(err) 
-            return res.status(404).send("There was a problem updating the profile.");
-        
-        return res.status(200).send(data);
+    
+    var id = req.params.id;
+
+    Profile.findOne({_id: id}, function (err, data) {
+        if(err) {
+            console.log(err);
+            return res.status(500).send("Ocurred a error in update of user profile!!");
+        }
+        else{
+            if(!data){
+                res.status(404).send("Register of user profile not found");
+            }
+            else{
+                if(req.body.name){
+                    data.name = req.body.name;
+                }
+
+                if(req.body.initial){
+                    data.initial = req.body.initial;
+                }
+
+                if(req.body.description){
+                    data.description = req.body.description;
+                }
+
+                if(req.body.isactive){
+                    data.isactive = req.body.isactive;
+                }
+
+                data.save(function(err,updateObject){
+                    if(err){
+                        console.log(err);
+                        res.status(500).send();
+                    }
+                    else{
+                        res.send(updateObject);
+                    }
+                });
+            }
+        }
     });
+
 });
 
 module.exports = controller;

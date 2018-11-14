@@ -13,18 +13,8 @@ const Category    = require('./categoryModel');
 const controller  = express.Router();
 
 
-controller.get('/list', async(req, res, next)=>{
-    var category = await Category.find();
-    
-    if(category == null || category == undefined){
-        return res.send(204).send({error: 'Not records of category found!'});
-    }
-    else{
-        return res.send({category});
-    }
-});
-
-controller.post('/register',async(req,res)=>{
+//Create a new category
+controller.post('/create',async(req,res)=>{
     const { name } = req.body;
 
     try{
@@ -38,6 +28,68 @@ controller.post('/register',async(req,res)=>{
     catch(error){
         return res.status(400).send({error: 'Register category failed'});
     }
+});
+
+//Get all categories
+controller.get('/read', async(req, res, next)=>{
+    var category = await Category.find();
+    
+    if(category == null || category == undefined){
+        return res.status(204).send({error: 'Not records of category found!'});
+    }
+    else{
+        return res.status(200).send({category});
+    }
+});
+
+//Get a single category by id
+controller.get('/find/:id', async(req, res)=>{
+    var category = await Category.findById(req.params.id);
+    
+    if(category == null || category == undefined){
+        return res.status(204).send({error: 'Not records of category found!'});
+    }
+    else{
+        return res.status(200).send({user});
+    }
+});
+
+// Update a category
+controller.put('/update/:id', async(req, res)=>{
+    
+    var id = req.params.id;
+
+    Category.findOne({_id: id}, function (err, data) {
+        if(err) {
+            console.log(err);
+            return res.status(500).send("Ocurred a error in update of category!!");
+        }
+        else{
+            if(!data){
+                res.status(404).send("Register of category not found");
+            }
+            else{
+                if(req.body.name){
+                    data.name = req.body.name;
+                }
+
+                if(req.body.description){
+                    data.description = req.body.description;
+                }
+
+                data.save(function(err,updateObject){
+                    if(err){
+                        console.log(err);
+                        res.status(500).send();
+                    }
+                    else{
+                        res.send(updateObject);
+                    }
+                });
+            }
+        }
+    });
+
 });
 
 module.exports = controller;

@@ -39,7 +39,7 @@ controller.post('/create',async(req,res)=>{
 });
 
 //Get all users
-controller.get('/read', async(req,res,next)=>{
+controller.get('/read', async(req,res)=>{
     var user = await User.find();
     
     if(user == null || user == undefined){
@@ -48,6 +48,68 @@ controller.get('/read', async(req,res,next)=>{
     else{
         return res.status(200).send({user});
     }
+});
+
+//Get a single User by id
+controller.get('/find/:id', async(req, res)=>{
+    var user = await User.findById(req.params.id);
+    
+    if(user == null || user == undefined){
+        return res.status(204).send({error: 'Not records of user found!'});
+    }
+    else{
+        return res.status(200).send({user});
+    }
+});
+
+// Update a user
+controller.put('/update/:id', async(req, res)=>{
+    
+    var id = req.params.id;
+
+    User.findOne({_id: id}, function (err, data) {
+        if(err) {
+            console.log(err);
+            return res.status(500).send("Ocurred a error in update of user!!");
+        }
+        else{
+            if(!data){
+                res.status(404).send("Register of user not found");
+            }
+            else{
+                if(req.body.name){
+                    data.name = req.body.name;
+                }
+
+                if(req.body.login){
+                    data.login = req.body.login;
+                }
+
+                if(req.body.mail){
+                    data.mail = req.body.mail;
+                }
+
+                if(req.body.password){
+                    data.password = req.body.password;
+                }
+
+                if(req.body.remember){
+                    data.remember = req.body.remember;
+                }
+
+                data.save(function(err,updateObject){
+                    if(err){
+                        console.log(err);
+                        res.status(500).send();
+                    }
+                    else{
+                        res.send(updateObject);
+                    }
+                });
+            }
+        }
+    });
+
 });
 
 module.exports = controller;
