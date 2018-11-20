@@ -28,6 +28,7 @@ controller.post('/create',async(req,res)=>{
     catch(error){
         return res.status(400).send({error: 'Register profile failed'});
     }
+
 });
 
 //Get all profiles
@@ -40,6 +41,7 @@ controller.get('/read', async(req, res, next)=>{
     else{
          return res.status(200).send({profile});
     }
+
 });
 
 //Get a single profile by id
@@ -52,11 +54,11 @@ controller.get('/find/:id', async(req, res, next)=>{
     else{
         return res.status(200).send({profile});
     }
+
 });
 
 // Update a profile
 controller.put('/update/:id', async(req, res)=>{
-    
     var id = req.params.id;
 
     Profile.findOne({_id: id}, function (err, data) {
@@ -92,6 +94,35 @@ controller.put('/update/:id', async(req, res)=>{
                     }
                     else{
                         res.send(updateObject);
+                    }
+                });
+            }
+        }
+    });
+
+});
+
+//Delete profile by id
+controller.delete('/delete/:id', async(req, res)=>{
+    var id = req.params.id;
+
+    Profile.findOne({_id: id}, function (err, data){
+        if(err){
+            console.log(err);
+            return res.status(500).send("Ocurred a error in delete of profile!");
+        }
+        else{
+            if(!data){
+                res.status(404).send("Register of profile not found");
+            }
+            else{
+                data.remove(function(err,object){
+                    if(err){
+                        console.log(err);
+                        res.status(500).send();
+                    }
+                    else{
+                        res.send(object);
                     }
                 });
             }

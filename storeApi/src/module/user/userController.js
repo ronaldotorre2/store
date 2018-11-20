@@ -112,4 +112,33 @@ controller.put('/update/:id', async(req, res)=>{
 
 });
 
+//Delete user by id
+controller.delete('/delete/:id', async(req, res)=>{
+    var id = req.params.id;
+
+    User.findOne({_id: id}, function (err, data){
+        if(err){
+            console.log(err);
+            return res.status(500).send("Ocurred a error in delete of user!");
+        }
+        else{
+            if(!data){
+                res.status(404).send("Register of user not found");
+            }
+            else{
+                data.remove(function(err,object){
+                    if(err){
+                        console.log(err);
+                        res.status(500).send();
+                    }
+                    else{
+                        res.send(object);
+                    }
+                });
+            }
+        }
+    });
+
+});
+
 module.exports = controller;
