@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <!-- login display -->
 <br>
 <div class="container">
@@ -12,18 +14,13 @@
                         <label for="inputLogin">{{itens[0]}}</label>
                       </div>
                       <div class="form-label-group">
-                          <input type="password" id="inputPassword" class="form-control" placeholder="{{itens[1]}}" maxlength="25" required>
-                          <label for="inputPassword">{{itens[1]}}</label>
+                          <input type="email" id="inputEmail" class="form-control" placeholder="{{itens[1]}}" maxlength="25" required>
+                          <label for="inputEmail">{{itens[1]}}</label>
                       </div>
-                      <div class="custom-control custom-checkbox mb-3">
-                          <input type="checkbox" class="custom-control-input" id="customCheck1">
-                          <label class="custom-control-label" for="customCheck1">{{itens[2]}}</label>
+                      <div id="controll">
+                          <div style="float: left;"><button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{{itens[2]}}</button></div>
+                          <div style="float: left;"><a href="/home" class="btn btn-lg btn-back btn-block text-uppercase">{{itens[3]}}</a></div>
                       </div>
-                      <div class="recover-user">
-                          <a href="/recovery">{{itens[3]}}</a>
-                      </div>
-                      <br>
-                      <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{{itens[4]}}</button>
                   </form>
               </div>
           </div>
