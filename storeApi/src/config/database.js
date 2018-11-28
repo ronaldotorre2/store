@@ -6,10 +6,12 @@
  * Configuration..: Database
  * ---------------------------------------------------------*/
 
-const mongoose = require('mongoose');
-const datatype = "mongodb://";
-const database = "/storeapp";
-const host = "localhost";
+const mongoose    = require('mongoose');
+const datatype    = "mongodb://";
+const database    = "/storeapp";
+const host        = ["localhost","ds119394.mlab.com:19394"];
+const environment = host[1];
+const mongoUri    = datatype+"@"+environment+database;
 
 const options = {
     useNewUrlParser: true,
@@ -22,15 +24,28 @@ const options = {
     bufferMaxEntries: 0,
     connectTimeoutMS: 10000,
     socketTimeoutMS: 45000,
-    family: 4
+    family: 4,
+    auth: {
+        user: 'esys',
+        password: 'gerente2016'
+    }
 }
 
-//mongoose.connect('mongodb://'+host+'/storeapp', { useMongoClient: true });
-mongoose.connect(datatype+host+database, options, function(error){
+mongoose.connect(mongoUri, options, function(error){
+    var process = null;
+
     if(error)
         console.log("Ocurred error! "+error);
-    else
-        console.log("Mongodb connected in environment "+host+"...");
+    else{
+        if (environment == "localhost"){
+            process = "Localhost";
+        }
+        else if(environment == "ds119394.mlab.com:19394"){
+            process = "Developer in cloud";
+        } 
+    }
+    
+    console.log("Mongodb connected in the "+process+" environment ...");
 });
 mongoose.Promise = global.Promise;
 mongoose.pluralize(null);

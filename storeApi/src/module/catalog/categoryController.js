@@ -52,7 +52,7 @@ controller.get('/find/:id', async(req, res)=>{
         return res.status(204).send({error: 'Not records of category found!'});
     }
     else{
-        return res.status(200).send({user});
+        return res.status(200).send({category});
     }
 
 });
