@@ -79,6 +79,10 @@ controller.put('/update/:id', async(req, res)=>{
                     data.description = req.body.description;
                 }
 
+                if(!req.body.updateAt){
+                    data.updateAt = Date.now();
+                }
+
                 data.save(function(err,updateObject){
                     if(err){
                         console.log(err);

@@ -20,6 +20,9 @@ const CategoryModel = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    updateAt:{
+        type: Date,
+    }
 });
 
 const Category = mongoose.model('Category', CategoryModel);

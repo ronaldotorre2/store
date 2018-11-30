@@ -64,7 +64,6 @@ controller.get('/find/:id', async(req, res)=>{
 
 // Update a user
 controller.put('/update/:id', async(req, res)=>{
-    
     var id = req.params.id;
 
     User.findOne({_id: id}, function (err, data) {
@@ -95,6 +94,10 @@ controller.put('/update/:id', async(req, res)=>{
 
                 if(req.body.remember){
                     data.remember = req.body.remember;
+                }
+
+                if(!req.body.updateAt){
+                    data.updateAt = Date.now();
                 }
 
                 data.save(function(err,updateObject){

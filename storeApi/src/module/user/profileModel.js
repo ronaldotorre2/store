@@ -29,6 +29,9 @@ const ProfileModel = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    updateAt:{
+        type: Date,
+    }
 });
 
 const profile = mongoose.model('Profile', ProfileModel);

@@ -39,6 +39,9 @@ const ProductModel = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    updateAt:{
+        type: Date,
+    }
 });
 
 const Product = mongoose.model('Product', ProductModel);

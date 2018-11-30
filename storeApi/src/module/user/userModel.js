@@ -42,6 +42,9 @@ const UserModel = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    updateAt:{
+        type: Date,
+    }
 });
 
 UserModel.pre('save', async function(next){
