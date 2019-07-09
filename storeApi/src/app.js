@@ -18,6 +18,7 @@ const userController     = require('./module/user/userController');
 const authController     = require('./module/authenticate/authController');
 const categoryController = require('./module/catalog/categoryController'); 
 const productController  = require('./module/catalog/productController');
+const personController   = require('./module/person/personController');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -28,4 +29,6 @@ app.use('/user',userController);
 app.use('/auth',authController);
 app.use('/category',categoryController);
 app.use('/product', productController);
+app.use('/person',personController);
+
 module.exports = app;
