@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Constant } from './../../shared/util/constant';
+import { Component, OnInit, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-recovery',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recovery.component.css']
 })
 export class RecoveryComponent implements OnInit {
-  title = "Recuperar acesso";
-  itens = ['Login','E-mail','Solicitar','Cancelar'];
+  title = Constant.RECOVERY_TITLE;
+  itens = [Constant.RECOVERY_LOGIN ,
+           Constant.RECOVERY_MAIL ,
+           Constant.RECOVERY_REQUEST,
+           Constant.RECOVERY_CANCEL
+          ];
 
-  constructor() { }
+  constructor(private elementRef: ElementRef) { }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'LightGray';
+  }
 
   ngOnInit() {
   }

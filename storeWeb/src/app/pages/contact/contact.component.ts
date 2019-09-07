@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Constant } from './../../shared/util/constant';
+import { Component, OnInit, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-contact',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  title = 'Contato';
+  title = Constant.CONTACT_TITLE;
 
-  constructor() { }
+  constructor(private elementRef: ElementRef) { }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+  }
 
   ngOnInit() {
   }

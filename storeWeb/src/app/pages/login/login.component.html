@@ -8,14 +8,14 @@
                   <h5 class="card-title text-center">{{title}}</h5>
                   <form class="form-signin">
                       <div class="form-label-group">
-                        <input type="text" id="inputLogin" class="form-control" placeholder="{{itens[0]}}" maxlength="75" required autofocus>
+                        <input type="text" id="inputLogin" class="form-control custon-inputs" style="padding-top: 5px; padding-left: 8px; padding-right: 10px;" placeholder="{{itens[0]}}" maxlength="75" required autofocus>
                         <label for="inputLogin">{{itens[0]}}</label>
                       </div>
                       <div class="form-label-group">
-                          <input type="password" id="inputPassword" class="form-control" placeholder="{{itens[1]}}" maxlength="25" required>
+                          <input type="password" id="inputPassword" class="form-control custon-inputs" style="padding-top: 5px; padding-left: 8px; padding-right: 10px;" placeholder="{{itens[1]}}" maxlength="12" required>
                           <label for="inputPassword">{{itens[1]}}</label>
                       </div>
-                      <div class="custom-control custom-checkbox mb-3">
+                      <div class="custom-control custom-checkbox mb-3 remember">
                           <input type="checkbox" class="custom-control-input" id="customCheck1">
                           <label class="custom-control-label" for="customCheck1">{{itens[2]}}</label>
                       </div>
@@ -28,5 +28,8 @@
               </div>
           </div>
       </div>
+    </div>
+    <div class="row">
+        <div id="version" class="version-label">{{environments}}</div>
     </div>
   </div>

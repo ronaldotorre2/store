@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Constant } from './../../shared/util/constant';
+import { Component, OnInit,ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-about',
@@ -7,10 +7,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  title = 'Sobre';
+  title = Constant.ABOUT_TITLE;
 
-  constructor(private route: ActivatedRoute) {
-    //this.route.params.subscribe(res => console.log(res.id));
+  constructor(private elementRef: ElementRef) {
+
+  }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
   }
 
   ngOnInit() {
