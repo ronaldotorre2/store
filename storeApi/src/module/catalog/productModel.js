@@ -3,7 +3,7 @@
  * Descriotion....: StoreApp project on nodejs with mongodb
  * Author.........: Ronaldo Torre
  *-----------------------------------------------------------
- * Entity.........: product
+ * Entity.........: Product
  * ---------------------------------------------------------*/
 
 const mongoose = require('../../config/database');

@@ -3,18 +3,36 @@
  * Descriotion....: StoreApp project on nodejs with mongodb
  * Author.........: Ronaldo Torre
  *-----------------------------------------------------------
- * Entity.........: Category
+ * Entity.........: Address
  * ---------------------------------------------------------*/
-
+ 
 const mongoose = require('../../config/database');
 
-const CategoryModel = new mongoose.Schema({
-    name:{
-        type: String,
-        required: true,
+const city = require('./cityModel');
+
+const AddressModel = new mongoose.Schema({
+    type:{
+        type: Number,
+        required: true
     },
-    description:{
+    location:{
         type: String,
+        required: true
+    },
+    number: {
+        type: String,
+        required: true
+    },
+    complement:{
+        type: String
+    },
+    city: {
+        type: city,
+        required: true
+    },
+    ZipeCode: {
+        type: String,
+        required: true
     },
     createdAt:{
         type: Date,
@@ -25,6 +43,6 @@ const CategoryModel = new mongoose.Schema({
     }
 });
 
-const Category = mongoose.model('Category', CategoryModel);
+const Address = mongoose.model('Address', AddressModel);
 
-module.exports = Category;
+module.exports = Address;
