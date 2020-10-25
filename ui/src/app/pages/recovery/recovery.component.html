@@ -1,0 +1,29 @@
+<app-header></app-header>
+
+<!-- login display -->
+<br>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5">
+              <div class="card-body">
+                  <h5 class="card-title text-center">{{title}}</h5>
+                  <form class="form-signin">
+                      <div class="form-label-group">
+                        <input type="text" id="inputLogin" class="form-control custon-inputs" style="padding-top: 5px; padding-left: 8px; padding-right: 10px;" placeholder="{{itens[0]}}" maxlength="75" required autofocus>
+                        <label for="inputLogin">{{itens[0]}}</label>
+                      </div>
+                      <div class="form-label-group">
+                          <input type="email" id="inputEmail" class="form-control custon-inputs" style="padding-top: 5px; padding-left: 8px; padding-right: 10px;" placeholder="{{itens[1]}}" maxlength="25" required>
+                          <label for="inputEmail">{{itens[1]}}</label>
+                      </div>
+                      <div id="controll">
+                          <div style="float: left;"><button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{{itens[2]}}</button></div>
+                          <div style="float: left;"><a href="/home" class="btn btn-lg btn-back btn-block text-uppercase">{{itens[3]}}</a></div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
